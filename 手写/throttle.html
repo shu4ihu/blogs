@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+	</head>
+
+	<body>
+		<div>
+			<span>正常情况：</span>
+			<input
+				type="text"
+				id="unThrottle"
+			/>
+		</div>
+		<br />
+		<div>
+			<span>实现节流时：</span>
+			<input
+				type="text"
+				id="throttle"
+			/>
+		</div>
+	</body>
+
+	<script>
+		// 获取未节流的输入框元素
+		const unDebounceDom = document.getElementById("unThrottle");
+		// 为未节流的输入框添加 keyup 事件监听器
+		unDebounceDom.addEventListener("keyup", function (e) {
+			// 模拟发送请求的函数，并传入输入框的值
+			ajax(e.target.value);
+		});
+
+		// 获取节流后的输入框元素
+		const debounceDom = document.getElementById("throttle");
+		// 使用节流函数包装发送请求的函数
+		debounceDom.addEventListener("keyup", function (e) {
+			throttleAjax(e.target.value);
+		});
+
+		// 模拟发送请求的函数
+		function ajax(a) {
+			console.log("这是一个请求", a);
+		}
+
+		// 使用节流函数节流发送请求的函数
+		let throttleAjax = throttle(ajax, 3000);
+
+		function throttle(func, delay) {
+			let canRun = true;
+			return function () {
+				if (!canRun) return;
+
+				canRun = false;
+				setTimeout(() => {
+					func.apply(this, arguments);
+					canRun = true;
+				}, delay);
+			};
+		}
+	</script>
+</html>

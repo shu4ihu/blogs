@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+	</head>
+
+	<body>
+		<div>
+			<span>正常情况：</span>
+			<input
+				type="text"
+				id="nondebounce"
+			/>
+		</div>
+		<div>
+			<span>实现防抖时：</span>
+			<input
+				type="text"
+				id="debounce"
+			/>
+		</div>
+
+		<script>
+			const nondebounceDom = document.getElementById("nondebounce");
+			// 正常情况下，每次键盘抬起都会触发 ajax 函数
+			nondebounceDom.addEventListener("keyup", function (e) {
+				ajax(e.target.value);
+			});
+
+			const debounceAjax = debounce(ajax, 500);
+			const debounceDom = document.getElementById("debounce");
+			// 使用防抖函数，确保在连续触发 keyup 事件时只触发一次 ajax 函数
+			debounceDom.addEventListener("keyup", function (e) {
+				debounceAjax(e.target.value);
+			});
+
+			// 模拟一个 ajax 请求
+			function ajax(a) {
+				console.log("这是一个请求", a);
+			}
+
+			// 实现防抖的函数
+			function debounce(func, delay) {
+				let timer = null;
+				return function () {
+					if (timer) clearTimeout(timer);
+
+					timer = setTimeout(() => {
+						func.apply(this, arguments);
+					}, delay);
+				};
+			}
+		</script>
+	</body>
+</html>
