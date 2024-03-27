@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<style>
+			.auto-fixed {
+				width: 100vw;
+				height: 100vh;
+				display: grid;
+				grid-template-columns: 200px 1fr 200px;
+			}
+			.fix {
+				background-color: antiquewhite;
+			}
+			.content {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="auto-fixed">
+			<div class="fix"></div>
+			<div class="content"></div>
+			<div class="fix"></div>
+		</div>
+	</body>
+</html>

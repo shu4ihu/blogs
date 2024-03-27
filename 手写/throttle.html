@@ -55,16 +55,28 @@
 		// 使用节流函数节流发送请求的函数
 		let throttleAjax = throttle(ajax, 3000);
 
-		function throttle(func, delay) {
-			let canRun = true;
-			return function () {
-				if (!canRun) return;
+		// function throttle(func, delay) {
+		// 	let canRun = true;
+		// 	return function () {
+		// 		if (!canRun) return;
 
-				canRun = false;
-				setTimeout(() => {
-					func.apply(this, arguments);
-					canRun = true;
-				}, delay);
+		// 		canRun = false;
+		// 		setTimeout(() => {
+		// 			func.apply(this, arguments);
+		// 			canRun = true;
+		// 		}, delay);
+		// 	};
+		// }
+		function throttle(func, delay) {
+			let prev = 0;
+			return function () {
+				const _this = this;
+				const now = Date.now();
+				console.log(now, prev, delay);
+				if (now - prev >= delay) {
+					prev = now;
+					func.apply(_this, arguments);
+				}
 			};
 		}
 	</script>
