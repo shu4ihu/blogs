@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+	</head>
+	<body>
+		<div>
+			<button class="btn">1</button>
+			<button class="btn">2</button>
+			<button class="btn">3</button>
+			<button class="btn">4</button>
+			<button class="btn">5</button>
+			<p>评分：<span id="rateText">0</span></p>
+		</div>
+
+		<script>
+			const btns = document.querySelectorAll(".btn");
+			const rateText = document.querySelector("#rateText");
+
+			btns.forEach((btn) => {
+				btn.addEventListener("click", function (e) {
+					rateText.innerText = e.target.innerText;
+				});
+			});
+		</script>
+	</body>
+</html>

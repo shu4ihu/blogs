@@ -70,6 +70,7 @@ class MyPromise {
 
 	then(onFulfilled, onRejected) {
 		return new MyPromise((resolve, reject) => {
+			console.log(this.#handlers.length);
 			this.#handlers.push({
 				onFulfilled,
 				onRejected,
@@ -77,6 +78,19 @@ class MyPromise {
 				reject,
 			});
 			this.#run();
+		});
+	}
+
+	all(promises) {
+		return new MyPromise((resolve, reject) => {
+			if (!Array.isArray(promises)) {
+				throw Error("not a array");
+			}
+			let counter = 0;
+			let promiseSize = promises.length;
+			let res = [];
+
+			for (let i = 0; i < promiseSize; i++) {}
 		});
 	}
 
@@ -95,20 +109,22 @@ class MyPromise {
 	}
 }
 
-setTimeout(() => {
-	console.log(1);
-	setTimeout(() => {
-		console.log(5);
-	}, 0);
-	new Promise((resolve, reject) => {
-		resolve(4);
-	}).then((res) => console.log(res));
-}, 0);
+// setTimeout(() => {
+// 	console.log(1);
+// 	setTimeout(() => {
+// 		console.log(5);
+// 	}, 0);
+// 	new Promise((resolve, reject) => {
+// 		resolve(4);
+// 	}).then((res) => console.log(res));
+// }, 0);
 
 new MyPromise((resolve, reject) => {
 	resolve(2);
-}).then((res) => {
-	console.log(res);
-});
-
-console.log(3);
+})
+	.then((res) => {
+		console.log(res);
+	})
+	.then((res) => {
+		console.log(res);
+	});

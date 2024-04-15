@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0"
+		/>
+		<title>Document</title>
+		<style>
+			.container {
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				border-radius: 4px;
+				display: flex;
+			}
+			.box {
+				flex: 1;
+				text-align: center;
+			}
+			.center {
+				align-self: center;
+			}
+			.bottom {
+				align-self: flex-end;
+			}
+			.left {
+				transform: translate(-100%);
+			}
+			.right {
+				transform: translate(100%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="box">1</div>
+			<div class="box bottom left">2</div>
+			<div class="box center">3</div>
+			<div class="box bottom right">4</div>
+			<div class="box">5</div>
+		</div>
+	</body>
+</html>
